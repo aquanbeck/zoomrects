@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "zoomrects",
+  "name": "Zoom Rects",
+  "version": "0.0.1",
+  "author": "ZoomRects",
+  "license": "MIT",
+  "description": "Classic Mac ZoomRects when a program launches, again for a later window of that program, and back to the icon when either window closes. Omarchy's Launching box follows the load trail. A watch shows only while that box is open.",
+  "kinds": ["service"],
+  "keepLoaded": true,
+  "entryPoints": {
+    "service": "Service.qml"
+  }
+}

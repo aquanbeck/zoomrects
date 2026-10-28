@@ -1,0 +1,157 @@
+.TH ZOOMRECTS 5 "October 2026" "Zoom Rects"
+.SH NAME
+zoomrects \- duration configuration for the Zoom Rects Omarchy plugin
+.SH DESCRIPTION
+Zoom Rects plays the classic Mac OS zoom-rectangle trail when a program
+launch starts.
+It then asks Omarchy to show its Launching box if that program's window
+is not already on screen.
+.PP
+The box text from this plugin is
+.BR Launching\[u2026] .
+.PP
+The watch mark is drawn only after this plugin has asked for that box, and
+only while Omarchy's on-screen display reports open.
+.PP
+The trail runs from a 32\(mu32 rectangle to the focused screen's work
+area.
+That rectangle is centered on the pointer.
+.PP
+When the pointer position is unavailable, it is centered on the work
+area instead.
+If 32 pixels would not fit, the rectangle is made smaller so that it
+stays inside the work area.
+.PP
+The work area is the focused monitor, inside that monitor's reserved
+insets and its outer gaps
+.RI ( general:gaps_out ).
+.PP
+The same trail plays in reverse when the window from that launch closes,
+and only when the 32\(mu32 icon from the launch is still known.
+.PP
+The rectangles shrink from the window's latest rectangle to that icon.
+When that rectangle was never seen, the trail starts from the work area
+the launch grew into.
+.PP
+A window with no known icon does not play a close trail.
+The watch and the Launching box are not part of the close.
+.PP
+After that load has finished, a later window of the same program is kept
+invisible while the rectangles grow from the stored launch icon to that
+window's own rectangle.
+.PP
+The window appears when the rectangles reach it, then shrinks back to the
+icon when the window closes.
+.PP
+Toolbars, menus, tooltips, docks, splash screens, popups, and windows
+attached to another window do not.
+.PP
+A window that maps while the load trail or the Launching box is still up
+stays with that one load trail.
+.PP
+Later windows zoom unless
+.B newWindows
+is false.
+.PP
+The icon is stored when this shell sees the program launch.
+A later window zooms only after that icon is stored.
+.PP
+The duration of the rectangle trail, and whether later windows zoom, have
+defaults in the plugin code.
+One optional file overrides those defaults.
+It may set
+.B durationSec
+and
+.BR newWindows .
+.SH FILES
+.TP
+.I $XDG_CONFIG_HOME/zoomrects.json
+Override file.
+When
+.I XDG_CONFIG_HOME
+is unset, the file is
+.IR $HOME/.config/zoomrects.json .
+.IP
+The file is JSON.
+A missing file is not an error.
+.IP
+The plugin reads this file.
+It does not create or rewrite it.
+.SH OPTIONS
+.TP
+.B durationSec
+Number of seconds requested for the unfilled rectangles to grow from
+the 32\(mu32 rectangle described above to the focused screen's work
+area.
+.IP
+The close trail uses this same duration to shrink from the window
+back to that icon.
+.IP
+A later-window trail uses this same duration in both directions.
+.RS
+.TP
+.B Default
+0.1, from the plugin code, when the file is missing, unreadable, empty,
+or not valid JSON, or when this key is absent or not a finite number.
+.TP
+.B Minimum
+0.01.
+A smaller finite number is raised to 0.01.
+.TP
+.B Maximum
+0.5.
+A larger finite number is lowered to 0.5.
+.TP
+.B On screen
+The plugin divides the chosen time into 12 steps and rounds each step
+to the nearest millisecond.
+A step shorter than 1 millisecond becomes 1 millisecond.
+The trail then lasts 12 times that step.
+.IP
+The default 0.1 lasts 96 milliseconds, in 8 millisecond steps.
+.br
+The minimum 0.01 lasts 12 milliseconds, in 1 millisecond steps.
+.br
+The maximum 0.5 lasts 504 milliseconds, in 42 millisecond steps.
+.br
+The example below, 0.05, lasts 48 milliseconds, in 4 millisecond steps.
+.RE
+.TP
+.B newWindows
+Whether a later non-toolbar window of a program that already played its
+load trail zooms from the stored icon to that window, and back when the
+window closes.
+.RS
+.TP
+.B Default
+true, from the plugin code, when the file is missing, unreadable, empty,
+or not valid JSON, or when this key is absent or not a JSON boolean.
+.TP
+.B false
+Only the load trail and its close play.
+.TP
+.B true
+Later windows zoom as described above.
+.RE
+.SH EXAMPLES
+.EX
+{ "durationSec": 0.05, "newWindows": false }
+.EE
+.PP
+Saving the file updates the step length and the later-window switch in
+the running plugin.
+The shell does not need to be restarted.
+.PP
+A trail that has already started keeps the outlines already drawn.
+Later steps use the new length.
+.PP
+A later-window trail that has already started finishes.
+The switch applies to the next window.
+.SH SEE ALSO
+The
+.B README
+in the plugin directory for install, update, and removal
+.RB ( "omarchy plugin add" ,
+.BR "omarchy plugin update" ,
+.BR "omarchy plugin remove" ,
+.BR "omarchy restart shell" ).
