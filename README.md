@@ -41,7 +41,7 @@ omarchy plugin validate .
 
 ## Install
 
-From this repository. The default branch has `manifest.json` at the repository root. Release 0.0.1 is private, so git has to be able to read that URL without an interactive prompt:
+From this repository. The default branch has `manifest.json` at the repository root:
 
 ```bash
 omarchy plugin add https://github.com/aquanbeck/zoomrects.git --enable
@@ -80,9 +80,9 @@ Removal disables the plugin if it was enabled. A git checkout is deleted. A hand
 
 This is a third-party plugin. Do **not** open a pull request against [omacom/omarchy](https://github.com/omacom/omarchy). The shell already loads third-party plugins from git.
 
-Release 0.0.1 is the default branch of the private repository [aquanbeck/zoomrects](https://github.com/aquanbeck/zoomrects). `manifest.json`, this README, and `LICENSE` are at the repository root.
+Release 0.0.1 is the default branch of [aquanbeck/zoomrects](https://github.com/aquanbeck/zoomrects). `manifest.json`, this README, and `LICENSE` are at the repository root.
 
-A listing at [plugins.omarchy.org](https://plugins.omarchy.org) needs that repository to be public, then an issue on [omacom/omarchy-plugin-marketplace](https://github.com/omacom/omarchy-plugin-marketplace/issues/new?template=submit-plugin.yml). The draft title, category, tags, and body are in [SUBMISSION.md](SUBMISSION.md). That issue has not been filed. The marketplace checks the current commit before a maintainer approves the listing, and listing is not a security review. Marketplace ids are permanent, so search for `zoomrects` again before filing.
+A listing at [plugins.omarchy.org](https://plugins.omarchy.org) is a separate issue on [omacom/omarchy-plugin-marketplace](https://github.com/omacom/omarchy-plugin-marketplace/issues/new?template=submit-plugin.yml). The draft title, category, tags, and body are in [SUBMISSION.md](SUBMISSION.md). That issue has not been filed. The marketplace checks the current commit before a maintainer approves the listing, and listing is not a security review. Marketplace ids are permanent, so search for `zoomrects` again before filing.
 
 ## Duration
 

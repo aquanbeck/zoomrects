@@ -1,22 +1,21 @@
 # Submission draft
 
-Release 0.0.1 is the private repository https://github.com/aquanbeck/zoomrects. The marketplace issue has not been filed. Do not file it, and do not make the repository public, until the owner says to submit.
+Release 0.0.1 is the public repository https://github.com/aquanbeck/zoomrects. The marketplace issue has not been filed. Do not file it until the owner says to submit.
 
 ## Not done
 
 - The marketplace issue was **not** filed.
-- The repository is **private**. A marketplace listing requires a public repository.
 - No pull request was opened against `omacom/omarchy`. Do not open one. Zoom Rects is a third-party shell plugin.
 
 ## Before filing
 
-1. Make https://github.com/aquanbeck/zoomrects **public**. The default branch already has `manifest.json`, `README.md`, and `LICENSE` at the repository root.
+1. The repository https://github.com/aquanbeck/zoomrects is public. The default branch has `manifest.json`, `README.md`, and `LICENSE` at the repository root.
 2. Search [plugins.omarchy.org](https://plugins.omarchy.org) for the id `zoomrects`. Marketplace ids are permanent. As of 23 September 2026 that id was not in the catalog. Search again on the day you file.
 3. The issue body below uses the repository root URL. No trailing slash, and no `/tree/main` suffix. `https://github.com/aquanbeck/zoomrects.git` is the `omarchy plugin add` URL. The issue body wants the root URL.
 4. Ask the owner to confirm every checklist line, especially ownership. Check all five boxes only after that confirmation. The marketplace rejects a body whose headings, order, or checklist text differ from the template.
 5. File with GitHub CLI, authenticated as the owner. Do not file from this draft while any box is still open.
 
-Install and remove, for an account that can read the private repository:
+Install and remove:
 
 ```bash
 omarchy plugin add https://github.com/aquanbeck/zoomrects.git --enable
